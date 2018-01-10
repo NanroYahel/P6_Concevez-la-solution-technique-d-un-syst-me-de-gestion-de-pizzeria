@@ -76,3 +76,10 @@ INNER JOIN Pizza ON Pizza.nom=Recette.nom_pizza
 INNER JOIN Ingredient ON Ingredient.id=Recette.ingredient_id
 WHERE nom_pizza = 'REINE';
 
+--Insère la recette de la ROMA : 
+INSERT INTO Recette (nom_pizza, ingredient_id, quantite)
+SELECT 'ROMA', id AS ingredient_id, '2'
+FROM Ingredients WHERE nom='mozzarella'
+UNION
+SELECT 'ROMA', id AS ingredient_id, '2'
+FROM Ingredients WHERE nom='jambon';
