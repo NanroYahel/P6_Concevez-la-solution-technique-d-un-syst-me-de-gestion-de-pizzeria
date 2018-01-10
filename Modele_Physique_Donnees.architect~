@@ -48,7 +48,7 @@
     <folder id="FOLTAB62" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB64" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX10" populated="true" UUID="97fd37d4-fa33-4e85-8fb4-589b6c4f23b1" clustered="false" name="Ingredient_pk" physicalName="ingredients_pk" primaryKeyIndex="true" unique="false" >
+    <index id="IDX10" populated="true" UUID="97fd37d4-fa33-4e85-8fb4-589b6c4f23b1" clustered="false" name="Ingredient_pk" physicalName="ingredient_pk" primaryKeyIndex="true" unique="false" >
      <index-column id="IDC11" populated="true" UUID="8b8d01ce-f5ac-41cf-b585-12d6c4d9d06e" ascendingOrDescending="UNSPECIFIED" column-ref="COL7" name="id" physicalName="id" />
     </index>
    </folder>
@@ -82,13 +82,13 @@
     <column id="COL19" populated="true" UUID="4b3175f8-550c-4bde-b87f-174643374d0f" autoIncrement="true" autoIncrementSequenceName="Commande_numero_commande_seq" defaultValue="" name="numero_commande" nullable="0" physicalName="numero_commande" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL20" populated="true" UUID="55f3addc-8181-45b3-9b8b-c731196a558d" autoIncrement="false" autoIncrementSequenceName="Commande_date_commande_seq" defaultValue="" name="date_commande" nullable="0" physicalName="date_commande" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
+    <column id="COL20" populated="true" UUID="55f3addc-8181-45b3-9b8b-c731196a558d" autoIncrement="false" autoIncrementSequenceName="Commande_date_seq" defaultValue="" name="date" nullable="0" physicalName="date" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="91" userDefinedTypeUUID="ee349be3-6af2-46e1-b305-975f5354b009" >
      <remarks></remarks>
     </column>
     <column id="COL21" populated="true" UUID="e146d304-c34c-454f-beb2-3d7a05c3aa2e" autoIncrement="false" autoIncrementSequenceName="Commande_statut_seq" defaultValue="" name="statut" nullable="0" physicalName="statut" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL22" populated="true" UUID="3ef266ad-3822-429d-a5a0-878441dbec3b" autoIncrement="false" autoIncrementSequenceName="Pizza_nom_pizza_seq_1" defaultValue="" name="nom_pizza" nullable="0" physicalName="nom_pizza" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL22" populated="true" UUID="3ef266ad-3822-429d-a5a0-878441dbec3b" autoIncrement="false" autoIncrementSequenceName="Pizza_nom_seq_1" defaultValue="" name="nom" nullable="0" physicalName="nom" precision="50" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
     <column id="COL23" populated="true" UUID="5171deb8-17e4-4202-a8e3-267e7b4ddd4b" autoIncrement="false" autoIncrementSequenceName="Client_id_seq" defaultValue="" name="client_id" nullable="0" physicalName="client_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -100,7 +100,7 @@
     <column id="COL25" populated="true" UUID="dae5ff1f-bcdf-431a-a391-51810c35b8f0" autoIncrement="false" autoIncrementSequenceName="Employé_id_seq_1" defaultValue="" name="livreur_id" nullable="0" physicalName="livreur_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL26" populated="true" UUID="154607a8-0ae3-48f2-bbe1-6e3937b99e04" autoIncrement="false" autoIncrementSequenceName="Employé_id_seq_2" defaultValue="" name="vendeur_id" nullable="0" physicalName="vendeur_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL26" populated="true" UUID="154607a8-0ae3-48f2-bbe1-6e3937b99e04" autoIncrement="false" autoIncrementSequenceName="Employé_id_seq_2" defaultValue="" name="vendeur_id" nullable="1" physicalName="vendeur_id" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     </folder>
@@ -261,7 +261,7 @@
     <column id="COL67" populated="true" UUID="20d7a047-b63c-494f-9821-49a4e00b2242" autoIncrement="false" autoIncrementSequenceName="Etablissement_id_seq_3" defaultValue="" name="etablissement_id" nullable="0" physicalName="etablissement_id" precision="0" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
-    <column id="COL68" populated="true" UUID="b7f98ef1-026b-4efd-8fa2-e4cfa638e97e" autoIncrement="false" autoIncrementSequenceName="Ingredients_id_seq_1" defaultValue="" name="ingredient_id" nullable="0" physicalName="ingredient_id" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL68" populated="true" UUID="b7f98ef1-026b-4efd-8fa2-e4cfa638e97e" autoIncrement="false" autoIncrementSequenceName="Ingredients_id_seq" defaultValue="" name="ingredient_id" nullable="0" physicalName="ingredient_id" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL69" populated="true" UUID="4c5e663d-84a4-4000-8b72-245550a82561" autoIncrement="false" autoIncrementSequenceName="Stock_quantite_seq" defaultValue="" name="quantite" nullable="0" physicalName="quantite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
@@ -282,10 +282,10 @@
   <table id="TAB73" populated="true" UUID="dca23638-f01c-4744-8c4f-e0e766928a7f" name="Recette" objectType="TABLE" physicalName="Recette" >
    <remarks></remarks>
    <folder id="FOLTAB731" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL74" populated="true" UUID="42a54f33-aaa8-4958-bfe6-8655bae95729" autoIncrement="false" autoIncrementSequenceName="Pizza_nom_pizza_seq_2" defaultValue="" name="nom_pizza" nullable="0" physicalName="nom_pizza" precision="50" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
+    <column id="COL74" populated="true" UUID="42a54f33-aaa8-4958-bfe6-8655bae95729" autoIncrement="false" autoIncrementSequenceName="Pizza_nom_seq_2" defaultValue="" name="nom_pizza" nullable="0" physicalName="nom_pizza" precision="50" primaryKeySeq="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="12" userDefinedTypeUUID="831ac2d4-0e65-47ec-a0b7-62b7f6b8760a" >
      <remarks></remarks>
     </column>
-    <column id="COL75" populated="true" UUID="42f70f0c-8d15-4e56-98b6-fd9586dfc443" autoIncrement="false" autoIncrementSequenceName="Ingredients_ingredient_id_seq_2" defaultValue="" name="ingredient_id" nullable="0" physicalName="ingredient_id" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
+    <column id="COL75" populated="true" UUID="42f70f0c-8d15-4e56-98b6-fd9586dfc443" autoIncrement="false" autoIncrementSequenceName="Ingredients_id_seq_1" defaultValue="" name="ingredient_id" nullable="0" physicalName="ingredient_id" precision="0" primaryKeySeq="1" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
      <remarks></remarks>
     </column>
     <column id="COL76" populated="true" UUID="ecdbbbf5-4b56-4b9f-9904-90ed40e1981d" autoIncrement="false" autoIncrementSequenceName="Recette_quantite_seq" defaultValue="" name="quantite" nullable="0" physicalName="quantite" precision="0" referenceCount="1" scale="0" sourceDataTypeName="UserDefinedSQLType" type="4" userDefinedTypeUUID="63b011c7-c81f-4c75-8271-632b3c87f727" >
