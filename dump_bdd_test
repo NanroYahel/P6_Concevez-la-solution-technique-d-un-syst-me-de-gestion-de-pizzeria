@@ -1,0 +1,768 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.6
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: client; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE client (
+    id integer NOT NULL,
+    nom character varying(50) NOT NULL,
+    prenom character varying(50) NOT NULL,
+    adresse character varying(150) NOT NULL,
+    email character varying(50) NOT NULL,
+    motdepasse character varying(50) NOT NULL
+);
+
+
+ALTER TABLE client OWNER TO ronan;
+
+--
+-- Name: client_id_seq_1; Type: SEQUENCE; Schema: public; Owner: ronan
+--
+
+CREATE SEQUENCE client_id_seq_1
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE client_id_seq_1 OWNER TO ronan;
+
+--
+-- Name: client_id_seq_1; Type: SEQUENCE OWNED BY; Schema: public; Owner: ronan
+--
+
+ALTER SEQUENCE client_id_seq_1 OWNED BY client.id;
+
+
+--
+-- Name: commande; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE commande (
+    numero_commande integer NOT NULL,
+    date date NOT NULL,
+    statut character varying(50) NOT NULL,
+    nom_pizza character varying(50) NOT NULL,
+    client_id integer NOT NULL,
+    preparateur_id integer NOT NULL,
+    livreur_id integer NOT NULL,
+    vendeur_id integer
+);
+
+
+ALTER TABLE commande OWNER TO ronan;
+
+--
+-- Name: commande_numero_commande_seq; Type: SEQUENCE; Schema: public; Owner: ronan
+--
+
+CREATE SEQUENCE commande_numero_commande_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE commande_numero_commande_seq OWNER TO ronan;
+
+--
+-- Name: commande_numero_commande_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ronan
+--
+
+ALTER SEQUENCE commande_numero_commande_seq OWNED BY commande.numero_commande;
+
+
+--
+-- Name: employe; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE employe (
+    id integer NOT NULL,
+    nom character varying(50) NOT NULL,
+    prenom character varying(50) NOT NULL
+);
+
+
+ALTER TABLE employe OWNER TO ronan;
+
+--
+-- Name: employe_id_seq; Type: SEQUENCE; Schema: public; Owner: ronan
+--
+
+CREATE SEQUENCE employe_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE employe_id_seq OWNER TO ronan;
+
+--
+-- Name: employe_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ronan
+--
+
+ALTER SEQUENCE employe_id_seq OWNED BY employe.id;
+
+
+--
+-- Name: etablissement; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE etablissement (
+    id integer NOT NULL,
+    nom character varying(100) NOT NULL,
+    adresse character varying(200) NOT NULL
+);
+
+
+ALTER TABLE etablissement OWNER TO ronan;
+
+--
+-- Name: etablissement_id_seq; Type: SEQUENCE; Schema: public; Owner: ronan
+--
+
+CREATE SEQUENCE etablissement_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE etablissement_id_seq OWNER TO ronan;
+
+--
+-- Name: etablissement_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ronan
+--
+
+ALTER SEQUENCE etablissement_id_seq OWNED BY etablissement.id;
+
+
+--
+-- Name: facture; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE facture (
+    numero_facture integer NOT NULL,
+    montant_total integer NOT NULL,
+    type_paiement character varying(50) NOT NULL,
+    numero_commande integer NOT NULL
+);
+
+
+ALTER TABLE facture OWNER TO ronan;
+
+--
+-- Name: facture_numero_facture_seq; Type: SEQUENCE; Schema: public; Owner: ronan
+--
+
+CREATE SEQUENCE facture_numero_facture_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE facture_numero_facture_seq OWNER TO ronan;
+
+--
+-- Name: facture_numero_facture_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ronan
+--
+
+ALTER SEQUENCE facture_numero_facture_seq OWNED BY facture.numero_facture;
+
+
+--
+-- Name: ingredient; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE ingredient (
+    id integer NOT NULL,
+    nom character varying(100) NOT NULL,
+    poids integer NOT NULL
+);
+
+
+ALTER TABLE ingredient OWNER TO ronan;
+
+--
+-- Name: ingredient_id_seq; Type: SEQUENCE; Schema: public; Owner: ronan
+--
+
+CREATE SEQUENCE ingredient_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE ingredient_id_seq OWNER TO ronan;
+
+--
+-- Name: ingredient_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ronan
+--
+
+ALTER SEQUENCE ingredient_id_seq OWNED BY ingredient.id;
+
+
+--
+-- Name: livreur; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE livreur (
+    employe_id integer NOT NULL,
+    immatriculation_scooter character varying(50) NOT NULL
+);
+
+
+ALTER TABLE livreur OWNER TO ronan;
+
+--
+-- Name: pizza; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE pizza (
+    nom character varying(50) NOT NULL,
+    prix integer NOT NULL
+);
+
+
+ALTER TABLE pizza OWNER TO ronan;
+
+--
+-- Name: preparateur; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE preparateur (
+    employe_id integer NOT NULL,
+    etablissement_id integer NOT NULL
+);
+
+
+ALTER TABLE preparateur OWNER TO ronan;
+
+--
+-- Name: recette; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE recette (
+    nom_pizza character varying(50) NOT NULL,
+    ingredient_id integer NOT NULL,
+    quantite integer NOT NULL
+);
+
+
+ALTER TABLE recette OWNER TO ronan;
+
+--
+-- Name: stock; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE stock (
+    etablissement_id integer NOT NULL,
+    ingredient_id integer NOT NULL,
+    quantite integer NOT NULL
+);
+
+
+ALTER TABLE stock OWNER TO ronan;
+
+--
+-- Name: vendeur; Type: TABLE; Schema: public; Owner: ronan
+--
+
+CREATE TABLE vendeur (
+    employe_id integer NOT NULL,
+    etablissement_id integer NOT NULL
+);
+
+
+ALTER TABLE vendeur OWNER TO ronan;
+
+--
+-- Name: client id; Type: DEFAULT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY client ALTER COLUMN id SET DEFAULT nextval('client_id_seq_1'::regclass);
+
+
+--
+-- Name: commande numero_commande; Type: DEFAULT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY commande ALTER COLUMN numero_commande SET DEFAULT nextval('commande_numero_commande_seq'::regclass);
+
+
+--
+-- Name: employe id; Type: DEFAULT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY employe ALTER COLUMN id SET DEFAULT nextval('employe_id_seq'::regclass);
+
+
+--
+-- Name: etablissement id; Type: DEFAULT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY etablissement ALTER COLUMN id SET DEFAULT nextval('etablissement_id_seq'::regclass);
+
+
+--
+-- Name: facture numero_facture; Type: DEFAULT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY facture ALTER COLUMN numero_facture SET DEFAULT nextval('facture_numero_facture_seq'::regclass);
+
+
+--
+-- Name: ingredient id; Type: DEFAULT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY ingredient ALTER COLUMN id SET DEFAULT nextval('ingredient_id_seq'::regclass);
+
+
+--
+-- Data for Name: client; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY client (id, nom, prenom, adresse, email, motdepasse) FROM stdin;
+1	MARSH	Randy	101 Main street, South Park, Colorado	randymarch@southpark.com	beer
+2	KERN	Jimbo	112 Main street, South Park, Colorado	jimbokern@southpark.com	comingrightforus
+\.
+
+
+--
+-- Name: client_id_seq_1; Type: SEQUENCE SET; Schema: public; Owner: ronan
+--
+
+SELECT pg_catalog.setval('client_id_seq_1', 2, true);
+
+
+--
+-- Data for Name: commande; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY commande (numero_commande, date, statut, nom_pizza, client_id, preparateur_id, livreur_id, vendeur_id) FROM stdin;
+1	2018-01-03	LIVREE	REINE	2	1	3	\N
+2	2018-01-03	LIVREE	REINE	1	2	3	4
+\.
+
+
+--
+-- Name: commande_numero_commande_seq; Type: SEQUENCE SET; Schema: public; Owner: ronan
+--
+
+SELECT pg_catalog.setval('commande_numero_commande_seq', 2, true);
+
+
+--
+-- Data for Name: employe; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY employe (id, nom, prenom) FROM stdin;
+1	MARSH	Stan
+2	BROFLOVSKI	Kyle
+3	CARTMAN	Eric
+4	McCORMICK	Kenny
+\.
+
+
+--
+-- Name: employe_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ronan
+--
+
+SELECT pg_catalog.setval('employe_id_seq', 4, true);
+
+
+--
+-- Data for Name: etablissement; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY etablissement (id, nom, adresse) FROM stdin;
+1	GO COWS	South park, Colorado
+2	BRONCOS	Denver, Colorado
+\.
+
+
+--
+-- Name: etablissement_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ronan
+--
+
+SELECT pg_catalog.setval('etablissement_id_seq', 2, true);
+
+
+--
+-- Data for Name: facture; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY facture (numero_facture, montant_total, type_paiement, numero_commande) FROM stdin;
+1	11	CB	2
+\.
+
+
+--
+-- Name: facture_numero_facture_seq; Type: SEQUENCE SET; Schema: public; Owner: ronan
+--
+
+SELECT pg_catalog.setval('facture_numero_facture_seq', 1, true);
+
+
+--
+-- Data for Name: ingredient; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY ingredient (id, nom, poids) FROM stdin;
+1	tomate	50
+2	mozzarella	100
+3	jambon	50
+4	olives	5
+5	oeuf	30
+\.
+
+
+--
+-- Name: ingredient_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ronan
+--
+
+SELECT pg_catalog.setval('ingredient_id_seq', 5, true);
+
+
+--
+-- Data for Name: livreur; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY livreur (employe_id, immatriculation_scooter) FROM stdin;
+3	666GAGA
+\.
+
+
+--
+-- Data for Name: pizza; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY pizza (nom, prix) FROM stdin;
+MARGARITA	9
+ROMA	10
+REINE	11
+\.
+
+
+--
+-- Data for Name: preparateur; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY preparateur (employe_id, etablissement_id) FROM stdin;
+2	2
+1	1
+\.
+
+
+--
+-- Data for Name: recette; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY recette (nom_pizza, ingredient_id, quantite) FROM stdin;
+MARGARITA	1	3
+MARGARITA	2	2
+MARGARITA	4	7
+ROMA	4	7
+ROMA	3	2
+ROMA	1	3
+ROMA	2	2
+REINE	5	1
+REINE	3	2
+REINE	4	7
+REINE	1	3
+REINE	2	2
+\.
+
+
+--
+-- Data for Name: stock; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY stock (etablissement_id, ingredient_id, quantite) FROM stdin;
+1	1	97
+1	3	98
+1	2	98
+1	4	93
+1	5	100
+2	1	97
+2	3	98
+2	2	98
+2	4	93
+2	5	99
+\.
+
+
+--
+-- Data for Name: vendeur; Type: TABLE DATA; Schema: public; Owner: ronan
+--
+
+COPY vendeur (employe_id, etablissement_id) FROM stdin;
+4	1
+\.
+
+
+--
+-- Name: client client_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY client
+    ADD CONSTRAINT client_pk PRIMARY KEY (id);
+
+
+--
+-- Name: commande commande_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY commande
+    ADD CONSTRAINT commande_pk PRIMARY KEY (numero_commande);
+
+
+--
+-- Name: employe employe_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY employe
+    ADD CONSTRAINT employe_pk PRIMARY KEY (id);
+
+
+--
+-- Name: etablissement etablissement_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY etablissement
+    ADD CONSTRAINT etablissement_pk PRIMARY KEY (id);
+
+
+--
+-- Name: facture facture_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY facture
+    ADD CONSTRAINT facture_pk PRIMARY KEY (numero_facture);
+
+
+--
+-- Name: ingredient ingredient_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY ingredient
+    ADD CONSTRAINT ingredient_pk PRIMARY KEY (id);
+
+
+--
+-- Name: livreur livreur_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY livreur
+    ADD CONSTRAINT livreur_pk PRIMARY KEY (employe_id);
+
+
+--
+-- Name: pizza pizza_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY pizza
+    ADD CONSTRAINT pizza_pk PRIMARY KEY (nom);
+
+
+--
+-- Name: preparateur preparateur_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY preparateur
+    ADD CONSTRAINT preparateur_pk PRIMARY KEY (employe_id);
+
+
+--
+-- Name: recette recette_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY recette
+    ADD CONSTRAINT recette_pk PRIMARY KEY (nom_pizza, ingredient_id);
+
+
+--
+-- Name: stock stock_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY stock
+    ADD CONSTRAINT stock_pk PRIMARY KEY (etablissement_id, ingredient_id);
+
+
+--
+-- Name: vendeur vendeur_pk; Type: CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY vendeur
+    ADD CONSTRAINT vendeur_pk PRIMARY KEY (employe_id);
+
+
+--
+-- Name: commande client_commande_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY commande
+    ADD CONSTRAINT client_commande_fk FOREIGN KEY (client_id) REFERENCES client(id);
+
+
+--
+-- Name: facture commande_facture_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY facture
+    ADD CONSTRAINT commande_facture_fk FOREIGN KEY (numero_commande) REFERENCES commande(numero_commande);
+
+
+--
+-- Name: livreur employ__livreur_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY livreur
+    ADD CONSTRAINT employ__livreur_fk FOREIGN KEY (employe_id) REFERENCES employe(id);
+
+
+--
+-- Name: preparateur employ__preparateur_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY preparateur
+    ADD CONSTRAINT employ__preparateur_fk FOREIGN KEY (employe_id) REFERENCES employe(id);
+
+
+--
+-- Name: vendeur employ__vendeur_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY vendeur
+    ADD CONSTRAINT employ__vendeur_fk FOREIGN KEY (employe_id) REFERENCES employe(id);
+
+
+--
+-- Name: preparateur etablissement_preparateur_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY preparateur
+    ADD CONSTRAINT etablissement_preparateur_fk FOREIGN KEY (etablissement_id) REFERENCES etablissement(id);
+
+
+--
+-- Name: stock etablissement_stock_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY stock
+    ADD CONSTRAINT etablissement_stock_fk FOREIGN KEY (etablissement_id) REFERENCES etablissement(id);
+
+
+--
+-- Name: vendeur etablissement_vendeur_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY vendeur
+    ADD CONSTRAINT etablissement_vendeur_fk FOREIGN KEY (etablissement_id) REFERENCES etablissement(id);
+
+
+--
+-- Name: recette ingredients_recette_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY recette
+    ADD CONSTRAINT ingredients_recette_fk FOREIGN KEY (ingredient_id) REFERENCES ingredient(id);
+
+
+--
+-- Name: stock ingredients_stock_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY stock
+    ADD CONSTRAINT ingredients_stock_fk FOREIGN KEY (ingredient_id) REFERENCES ingredient(id);
+
+
+--
+-- Name: commande livreur_commande_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY commande
+    ADD CONSTRAINT livreur_commande_fk FOREIGN KEY (livreur_id) REFERENCES livreur(employe_id);
+
+
+--
+-- Name: commande pizza_commande_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY commande
+    ADD CONSTRAINT pizza_commande_fk FOREIGN KEY (nom_pizza) REFERENCES pizza(nom);
+
+
+--
+-- Name: recette pizza_recette_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY recette
+    ADD CONSTRAINT pizza_recette_fk FOREIGN KEY (nom_pizza) REFERENCES pizza(nom);
+
+
+--
+-- Name: commande preparateur_commande_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY commande
+    ADD CONSTRAINT preparateur_commande_fk FOREIGN KEY (preparateur_id) REFERENCES preparateur(employe_id);
+
+
+--
+-- Name: commande vendeur_commande_fk; Type: FK CONSTRAINT; Schema: public; Owner: ronan
+--
+
+ALTER TABLE ONLY commande
+    ADD CONSTRAINT vendeur_commande_fk FOREIGN KEY (vendeur_id) REFERENCES vendeur(employe_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

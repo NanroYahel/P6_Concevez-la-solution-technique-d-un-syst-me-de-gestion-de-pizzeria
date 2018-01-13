@@ -20,7 +20,8 @@ INNER JOIN Ingredient ON Ingredient.id=Recette.ingredient_id
 WHERE nom_pizza = 'REINE';
 
 -- Selection des informations d'une commande
-SELECT date, statut, nom_pizza, CONCAT_WS(' ', Client.nom, Client.prenom) AS client, CONCAT_WS(' ',Preparateur.nom, Preparateur.prenom) AS preparateur, CONCAT_WS(' ', Livreur.nom, Livreur.prenom) AS livreur, CONCAT_WS(' ', Vendeur.nom, Vendeur.prenom)  AS vendeur
+SELECT date, statut, nom_pizza, CONCAT_WS(' ', Client.nom, Client.prenom) AS client, CONCAT_WS(' ',Preparateur.nom, Preparateur.prenom) AS preparateur, 
+		CONCAT_WS(' ', Livreur.nom, Livreur.prenom) AS livreur, CONCAT_WS(' ', Vendeur.nom, Vendeur.prenom)  AS vendeur
 FROM Commande
 INNER JOIN Employe AS Preparateur ON Preparateur.id=Commande.preparateur_id
 INNER JOIN Employe AS Livreur ON Livreur.id=Commande.livreur_id

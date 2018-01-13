@@ -16,44 +16,44 @@ VALUES ('tomate', 50),
 
 -- Insert 'MARGARITA' recipe
 INSERT INTO Recette (nom_pizza, ingredient_id, quantite)
-SELECT 'MARGARITA', id AS ingredient_id, '3'
+SELECT 'MARGARITA', id AS ingredient_id, 3
 FROM Ingredient WHERE nom='tomate'
 UNION
-SELECT 'MARGARITA', id AS ingredient_id, '2'
+SELECT 'MARGARITA', id AS ingredient_id, 2
 FROM Ingredient WHERE nom='mozzarella'
 UNION
-SELECT 'MARGARITA', id AS ingredient_id, '7'
+SELECT 'MARGARITA', id AS ingredient_id, 7
 FROM Ingredient WHERE nom='olives';
 
 -- Insert 'ROMA' recipe
 INSERT INTO Recette (nom_pizza, ingredient_id, quantite)
-SELECT 'ROMA', id AS ingredient_id, '3'
+SELECT 'ROMA', id AS ingredient_id, 3
 FROM Ingredient WHERE nom='tomate'
 UNION
-SELECT 'ROMA', id AS ingredient_id, '2'
+SELECT 'ROMA', id AS ingredient_id, 2
 FROM Ingredient WHERE nom='mozzarella'
 UNION
-SELECT 'ROMA', id AS ingredient_id, '2'
+SELECT 'ROMA', id AS ingredient_id, 2
 FROM Ingredient WHERE nom='jambon'
 UNION
-SELECT 'ROMA', id AS ingredient_id, '7'
+SELECT 'ROMA', id AS ingredient_id, 7
 FROM Ingredient WHERE nom='olives';
 
 -- Insert 'REINE' recipe
 INSERT INTO Recette (nom_pizza, ingredient_id, quantite)
-SELECT 'REINE', id AS ingredient_id, '3'
+SELECT 'REINE', id AS ingredient_id, 3
 FROM Ingredient WHERE nom='tomate'
 UNION
-SELECT 'REINE', id AS ingredient_id, '2'
+SELECT 'REINE', id AS ingredient_id, 2
 FROM Ingredient WHERE nom='mozzarella'
 UNION
-SELECT 'REINE', id AS ingredient_id, '2'
+SELECT 'REINE', id AS ingredient_id, 2
 FROM Ingredient WHERE nom='jambon'
 UNION
-SELECT 'REINE', id AS ingredient_id, '7'
+SELECT 'REINE', id AS ingredient_id, 7
 FROM Ingredient WHERE nom='olives'
 UNION
-SELECT 'REINE', id AS ingredient_id, '1'
+SELECT 'REINE', id AS ingredient_id, 1
 FROM Ingredient WHERE nom='oeuf';
 
 
@@ -67,56 +67,56 @@ VALUES ('GO COWS', 'South park, Colorado'),
 
 -- Insert stock in 'GO COWS' shop
 INSERT INTO Stock (ingredient_id, etablissement_id, quantite)
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '97'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 97
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='tomate' AND Etablissement.nom='GO COWS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '98'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 98
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='mozzarella' AND Etablissement.nom='GO COWS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '98'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 98
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='jambon' AND Etablissement.nom='GO COWS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '93'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 93
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='olives' AND Etablissement.nom='GO COWS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '100'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 100
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='oeuf' AND Etablissement.nom='GO COWS';
 
 -- Insert stock in 'BRONCOS' shop
 INSERT INTO Stock (ingredient_id, etablissement_id, quantite)
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '97'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 97
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='tomate' AND Etablissement.nom='BRONCOS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '98'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 98
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='mozzarella' AND Etablissement.nom='BRONCOS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '98'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 98
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='jambon' AND Etablissement.nom='BRONCOS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '93'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 93
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='olives' AND Etablissement.nom='BRONCOS'
 UNION
-SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, '99'
+SELECT Ingredient.id AS ingredient_id, Etablissement.id AS etablissement_id, 99
 FROM Ingredient
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Ingredient.nom='oeuf' AND Etablissement.nom='BRONCOS';
 
 -- Insert Employees 
@@ -132,12 +132,12 @@ VALUES ('MARSH', 'Stan'),
 INSERT INTO Preparateur (employe_id, etablissement_id)
 SELECT Employe.id AS employe_id, Etablissement.id AS etablissement_id
 FROM Employe
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Employe.nom ='MARSH' AND Etablissement.nom='GO COWS'
 UNION
 SELECT Employe.id AS employe_id, Etablissement.id AS etablissement_id
 FROM Employe
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Employe.nom ='BROFLOVSKI' AND Etablissement.nom='BRONCOS';
 
 -- Insert delivery men
@@ -149,7 +149,7 @@ FROM Employe WHERE nom='CARTMAN';
 INSERT INTO Vendeur (employe_id, etablissement_id)
 SELECT Employe.id AS employe_id, Etablissement.id AS etablissement_id
 FROM Employe
-JOIN Etablissement
+CROSS JOIN Etablissement
 WHERE Employe.nom ='McCORMICK' AND Etablissement.nom='GO COWS';
 
 -- Insert clients for test
@@ -159,12 +159,12 @@ VALUES ('MARSH', 'Randy', '101 Main street, South Park, Colorado', 'randymarch@s
 
 -- Insert artificial orders
 INSERT INTO Commande (date, statut, nom_pizza, client_id, preparateur_id, livreur_id, vendeur_id)
-SELECT '2018-01-03', 'LIVREE', 'REINE', Client.id AS client_id, Preparateur.employe_id, Livreur.employe_id, Vendeur.employe_id
+SELECT date '2018-01-03', 'LIVREE', 'REINE', Client.id AS client_id, Preparateur.employe_id, Livreur.employe_id, Vendeur.employe_id
 FROM Employe 
-JOIN Client
+CROSS JOIN Client
 INNER JOIN Preparateur ON Preparateur.employe_id=Employe.id
-JOIN Livreur 
-JOIN Vendeur
+CROSS JOIN Livreur 
+CROSS JOIN Vendeur
 WHERE Client.nom='MARSH' AND Preparateur.employe_id = 
 (SELECT Preparateur.employe_id FROM Preparateur INNER JOIN Employe ON Employe.id=Preparateur.employe_id WHERE Employe.nom='BROFLOVSKI') 
 AND Livreur.employe_id=
@@ -172,12 +172,12 @@ AND Livreur.employe_id=
 AND Vendeur.employe_id=
 (SELECT Vendeur.employe_id FROM Vendeur INNER JOIN Employe ON Employe.id=Vendeur.employe_id WHERE Employe.nom='McCORMICK')
 UNION
-SELECT '2018-01-03', 'LIVREE', 'REINE', Client.id AS client_id, Preparateur.employe_id, Livreur.employe_id, NULL
+SELECT date '2018-01-03', 'LIVREE', 'REINE', Client.id AS client_id, Preparateur.employe_id, Livreur.employe_id, NULL
 FROM Employe 
-JOIN Client
+CROSS JOIN Client
 INNER JOIN Preparateur ON Preparateur.employe_id=Employe.id
-JOIN Livreur 
-JOIN Vendeur
+CROSS JOIN Livreur 
+CROSS JOIN Vendeur
 WHERE Client.nom='KERN' AND Preparateur.employe_id = 
 (SELECT Preparateur.employe_id FROM Preparateur INNER JOIN Employe ON Employe.id=Preparateur.employe_id WHERE Employe.nom='MARSH') 
 AND Livreur.employe_id=
